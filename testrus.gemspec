@@ -13,6 +13,8 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_development_dependency("test-unit", "2.5.2")
+  gem.add_development_dependency("fakefs", "0.4.1")
+  gem.add_development_dependency("pry", "0.9.10")
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

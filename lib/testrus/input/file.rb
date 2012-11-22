@@ -1,6 +1,23 @@
 module Testrus
   class Input
     class File
+      # Public: Create a new Input::File object to handle file sources for input
+      # and output.
+      #
+      # context - The Hash specifying context:
+      #           :pwd - Working directory for the file source.
+      #
+      def initialize(context = {})
+        @context = context
+      end
+
+      # Public: The working directory of the file input source.
+      #
+      # Returns the String of the working directory.
+      def pwd
+        @pwd ||= @context[:pwd].nil? || @context[:pwd].empty? ? default_pwd : @context[:pwd]
+      end
+
       # Public: Associated the file input and output into Input objects.
       #
       # Returns an Array of Input objects.
@@ -31,7 +48,7 @@ module Testrus
       #
       # Returns an Array of Strings of expanded paths.
       def files(wildcard)
-        Dir[wildcard].map { |file| ::File.expand_path(file) }
+        Dir["#{pwd}/#{wildcard}"].map { |file| ::File.expand_path(file) }
       end
 
       # Internal: Finds the input file's counterpart in the Array of
@@ -66,6 +83,13 @@ module Testrus
       # Returns a String name of the input or output file.
       def name_from_file_name(path)
         path.match(/\d+$/)[0]
+      end
+
+      # Internal: Default working directory if none was passed.
+      #
+      # Returns the String path of the working directory.
+      def default_pwd
+        `pwd`.strip 
       end
     end
   end

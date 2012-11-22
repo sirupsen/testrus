@@ -1,6 +1,6 @@
 # Testrus
 
-TODO: Write a gem description
+Aids in testing your programs in informatics competitions.
 
 ## Installation
 
@@ -15,10 +15,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install testrus
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 

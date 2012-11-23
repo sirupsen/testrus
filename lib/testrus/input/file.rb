@@ -18,11 +18,13 @@ module Testrus
         @pwd ||= @context[:pwd].nil? || @context[:pwd].empty? ? default_pwd : @context[:pwd]
       end
 
-      # Public: Associated the file input and output into Input objects.
+      # Public: Associated the file input and output into Input objects, also
+      # caches it so we do not repeat this relatively costly operation on the
+      # file system.
       #
       # Returns an Array of Input objects.
       def input
-        input_files.map do |input|
+        @input ||= input_files.map do |input|
           Input.new input:  ::File.read(input),
                     output: ::File.read(output_from_input(input)),
                     name:   name_from_file_name(input)

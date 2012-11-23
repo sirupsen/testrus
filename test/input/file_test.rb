@@ -13,15 +13,15 @@ class InputFileTest < Test::Unit::TestCase
 
   def test_empty_pwd_context_defaults_to_pwd
     @input_file = Testrus::Input::File.new(pwd: "")
-
     mock(@input_file).default_pwd { '/home/testrus/project' }
+
     assert_equal "/home/testrus/project", @input_file.pwd
   end
 
   def test_nil_pwd_context_defaults_to_pwd
     @input_file = Testrus::Input::File.new(pwd: nil)
-
     mock(@input_file).default_pwd { '/home/testrus/project' }
+
     assert_equal "/home/testrus/project", @input_file.pwd
   end
 

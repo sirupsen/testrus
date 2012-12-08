@@ -2,24 +2,26 @@
 
 Aids in testing your programs in informatics competitions.
 
-## Installation
+Install it with `gem install testrus`.
 
-Add this line to your application's Gemfile:
+## Usage
 
-    gem 'testrus'
+`testrus` looks for input and output file pairs in the directory you run it
+from. E.g. if:
 
-And then execute:
+```bash
+$ ls
+input.1
+input.2
+output.1
+output.2
+```
 
-    $ bundle
+You have two tests. The expected output is in the output file. Then simply run
+testrus from this directory with the path to the script you would like to test.
 
-Or install it yourself as:
+![](http://i.imgur.com/kvhnt.png)
+![](http://i.imgur.com/9lFil.png)
 
-    $ gem install testrus
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+If the time exceeds a second or the memory usage comes above 64mb the test will
+also appear failed.

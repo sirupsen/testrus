@@ -4,6 +4,8 @@ Aids in testing your programs in informatics competitions.
 
 Install it with `gem install testrus`.
 
+Currently only tested on OS X.
+
 ## Usage
 
 `testrus` looks for input and output file pairs in the directory you run it

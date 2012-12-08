@@ -2,5 +2,5 @@
 
 require 'testrus'
 
-tester = Testrus::Tester.new(source: file, formatter: default, command: ARGV[0])
+tester = Testrus::Tester.new(source: :file, formatter: :default, command: ARGV[0..-1].join(" "))
 tester.run

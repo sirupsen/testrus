@@ -12,7 +12,6 @@ module Testrus
     #
     def initialize(command)
       @command = command
-      @formatter = Formatter::Default
     end
     
     # Public: Returns an object with the results of running the program against

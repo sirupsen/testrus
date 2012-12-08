@@ -51,7 +51,7 @@ module Testrus
     # results to the formatter.
     def run
       source.tests.each do |test|
-        formatter.report runner.run(test)
+        formatter.new(runner.run(test)).report
       end
     end
 

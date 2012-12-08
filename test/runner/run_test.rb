@@ -38,4 +38,25 @@ class RunnerRunTest < Test::Unit::TestCase
 
     assert !@run.passed?, "Run should not pass"
   end
+
+  def test_within_constraints
+    stub(@run).real_time { 0.84 }
+    stub(@run).memory_usage { 37.00 }
+
+    assert @run.within_constraints?
+  end
+
+  def test_not_within_time_constraints
+    stub(@run).real_time { 1.84 }
+    stub(@run).memory_usage { 37.00 }
+
+    assert !@run.within_constraints?
+  end
+
+  def test_not_within_memory_constraints
+    stub(@run).real_time { 0.84 }
+    stub(@run).memory_usage { 84.00 }
+
+    assert !@run.within_constraints?
+  end
 end

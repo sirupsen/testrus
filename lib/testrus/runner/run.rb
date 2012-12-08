@@ -43,6 +43,11 @@ module Testrus
         output == @test.expected_output
       end
 
+      # Public: Within usual constraints for time and memory
+      def within_constraints?
+        memory_usage <= 64.00 && real_time <= 1.00
+      end
+
       # Public: Extracts the output against the input from the entire output
       # which also inclues the time and memory information.
       def output

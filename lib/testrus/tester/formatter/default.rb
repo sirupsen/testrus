@@ -30,7 +30,7 @@ module Testrus
         private
         # Internal: Prints the header in the appropriate color.
         def header(color)
-          puts "---> Test #{run.test.name} (#{run.real_time}s, #{run.memory_usage})".send(color)
+          puts "---> Test #{run.test.name} (#{run.real_time.round(2)}s, #{run.memory_usage.round(2)}mb)".send(color)
         end
 
         # Internal: Test passed. 

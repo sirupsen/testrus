@@ -12,9 +12,12 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Testing for informatics competitions.}
   gem.homepage      = ""
 
+  gem.add_dependency("colored", "1.2")
+
   gem.add_development_dependency("test-unit", "2.5.2")
   gem.add_development_dependency("fakefs", "0.4.1")
   gem.add_development_dependency("pry", "0.9.10")
+  gem.add_development_dependency("rr", "1.0.4")
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

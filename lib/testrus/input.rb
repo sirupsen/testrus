@@ -31,5 +31,6 @@ module Testrus
     def output
       @options[:output].strip
     end
+    alias_method :expected_output, :output
   end
 end

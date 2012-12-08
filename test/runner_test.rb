@@ -11,6 +11,7 @@ class RunnerTest < Test::Unit::TestCase
   end
 
   def test_runs_test_with_given_input
-    assert_equal "ohai", @runner.run("ohai").strip
+    input = Testrus::Input.new input: "6", output: "6", name: "1"
+    assert_instance_of Testrus::Runner::Run, @runner.run(input)
   end
 end

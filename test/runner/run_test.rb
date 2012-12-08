@@ -2,8 +2,10 @@ require 'test_helper'
 
 class RunnerRunTest < Test::Unit::TestCase
   def setup
-    output = fixture("time_run.txt")
-    @run = Testrus::Runner::Run.new(output)
+    @output = fixture("time_run.txt")
+    @test = Testrus::Input.new(input: "world", output: "hello world\nyou are fine", name: "1")
+
+    @run = Testrus::Runner::Run.new(@output, @test)
   end
 
   def test_extract_memory_usage
@@ -24,5 +26,16 @@ class RunnerRunTest < Test::Unit::TestCase
 
   def test_extract_output
     assert_equal "hello world\nyou are fine", @run.output
+  end
+
+  def test_passed
+    assert @run.passed?, "Run should pass"
+  end
+
+  def test_not_passed
+    @test = Testrus::Input.new(input: "world", output: "hello world\nyou are not fine", name: "1")
+    @run = Testrus::Runner::Run.new(@output, @test)
+
+    assert !@run.passed?, "Run should not pass"
   end
 end

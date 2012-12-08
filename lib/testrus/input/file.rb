@@ -30,6 +30,7 @@ module Testrus
                     name:   name_from_file_name(input)
         end
       end
+      alias_method :tests, :input
 
       private
       # Internal: Finds the input files on the filesystem and expands the paths.

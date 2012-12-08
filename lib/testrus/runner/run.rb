@@ -1,6 +1,8 @@
 module Testrus
   class Runner
     class Run
+      attr_reader :output, :test
+
       # Responsible for extracting data from the run of the program. See the
       # public methods for what information can be extracted. This class only
       # reads output that is run with the command: `/usr/bin/time -l
@@ -10,8 +12,10 @@ module Testrus
       # only OS X.
       #
       # output - The String output from the command `/usr/bin/time -l program`
-      def initialize(output)
+      # test   - The Test that the input origins from.
+      def initialize(output, test)
         @output = output
+        @test = test
       end
 
       # Public: Extracts the memory usage from the output.
@@ -32,6 +36,11 @@ module Testrus
       # Public: Extracts the sys time from the output.
       def sys_time
         time "sys"
+      end
+
+      # Public: Boolean value of whether the test passed.
+      def passed?
+        output == @test.expected_output
       end
 
       # Public: Extracts the output against the input from the entire output

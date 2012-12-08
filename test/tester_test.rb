@@ -17,13 +17,21 @@ class TesterTest < Test::Unit::TestCase
     assert_equal "ruby test.rb", @tester.runner.command
   end
 
-  def test_run_input
-    source = stub!
-    source.input do
-      [
-        Testrus::Input.new(input: "3 1 2 3", output: "10", name: "1"),
-        Testrus::Input.new(input: "2 1 2", output: "3", name: "2")
-      ]
-    end
+  def test_default_formatter
+    assert_equal :default, @tester.options[:formatter]
+  end
+
+  def test_default_source
+    assert_equal :file, @tester.options[:source]
+  end
+
+  def test_return_formatter_class
+    assert_equal Testrus::Tester::Formatter::Default, @tester.formatter
+  end
+
+  def test_override_default_options
+    @tester = Testrus::Tester.new(:source => :doom)
+
+    assert_equal :doom, @tester.options[:source]
   end
 end

@@ -17,11 +17,15 @@ output.1
 output.2
 ```
 
-You have two tests. The expected output is in the output file. Then simply run
-testrus from this directory with the path to the script you would like to test.
+You have two tests. The expected output is in the output file. To test your
+program, simply run testrus from this directory with the command to run your
+program, then the test data will be piped to your program via STDIN.
+
+If the runtime exceeds a second or the memory usage ever exceeds 64mb the test will
+also appear failed.
+
+## Screenshots
 
 ![](http://i.imgur.com/kvhnt.png)
 ![](http://i.imgur.com/9lFil.png)
-
-If the time exceeds a second or the memory usage comes above 64mb the test will
-also appear failed.
+![](http://i.imgur.com/mWLDj.png)

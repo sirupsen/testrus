@@ -2,14 +2,15 @@ require 'test_helper'
 
 class RunnerTest < Test::Unit::TestCase
   def setup
-    @runner = Testrus::Runner.new("ruby hello.rb")
+    @path = File.expand_path(File.join(File.dirname(__FILE__), "/program.rb"))
+    @runner = Testrus::Runner.new("ruby #{@path}")
   end
 
   def test_receives_readable_command
-    assert_equal "ruby hello.rb", @runner.command
+    assert_equal "ruby #{@path}", @runner.command
   end
 
   def test_runs_test_with_given_input
-
+    assert_equal "ohai", @runner.run("ohai").strip
   end
 end

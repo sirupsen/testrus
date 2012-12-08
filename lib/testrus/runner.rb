@@ -21,8 +21,16 @@ module Testrus
     #
     # Returns a Runner::Run object with information about the run.
     def run(test)
-      %x[echo '#{test.input}' | /usr/bin/time -l #{command} &> #{LOG_FILE}].strip
+      system "echo '#{test.input}' | /usr/bin/time -l #{full_command} &> #{LOG_FILE}"
       Run.new File.read(LOG_FILE), test
+    end
+
+    private
+    # Internal: Returns the full command, where the script is prefixed with its
+    # full path. All options are passed along.
+    def full_command
+      parts = command.split(" ")
+      "#{parts[0..-2].join(" ")} #{`pwd`.strip}/#{parts.last}"
     end
   end
 end

@@ -12,7 +12,7 @@ class InputFileTest < Test::Unit::TestCase
   end
 
   def teardown
-    Dir["#{root_path}/*in*[0-9]*"].each { |file| File.delete(file) }
+    Dir["#{root_path}/*{in,out}*[0-9]*"].each { |file| File.delete(file) }
   end
 
   def test_empty_pwd_context_defaults_to_pwd

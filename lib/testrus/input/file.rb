@@ -27,7 +27,7 @@ module Testrus
         @input ||= input_files.map do |input|
           Input.new input:  ::File.read(input),
                     output: ::File.read(output_from_input(input)),
-                    name:   name_from_file_name(input)
+                    name:   test_name_from_file_name(input)
         end
       end
       alias_method :tests, :input
@@ -37,14 +37,14 @@ module Testrus
       #
       # Returns an Array of Strings of paths to the input files.
       def input_files 
-        @input_files ||= files("input.*")
+        @input_files ||= files("*in*[0-9]*")
       end
 
       # Internal: Finds the output files on the filesystem and expands the paths.
       #
       # Returns an Array of Strings of paths to the output files.
       def output_files
-        @output_files ||= files("output.*")
+        @output_files ||= files("*out*[0-9]*")
       end
 
       # Internal: Finds the files with the given wildcard and expands the paths.
@@ -65,11 +65,11 @@ module Testrus
       # Returns the full path to the associated output file.
       def output_from_input(input)
         output_files.find do |output|
-          name_from_file_name(input) == name_from_file_name(output)
+          id_from_file_name(input) == id_from_file_name(output)
         end
       end
 
-      # Internal: The name of an input or output file is defined as the last
+      # Internal: The id of an input or output file is defined as the last
       # number in the path name. This method returns an input or output file's
       # name.
       #
@@ -84,9 +84,10 @@ module Testrus
       #   #=> "2"
       #
       # Returns a String name of the input or output file.
-      def name_from_file_name(path)
+      def id_from_file_name(path)
         path.match(/\d+$/)[0]
       end
+      alias_method :test_name_from_file_name, :id_from_file_name
 
       # Internal: Default working directory if none was passed.
       #

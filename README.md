@@ -40,3 +40,5 @@ also appear failed.
 * Easy input/output pair creation
 * Automatically fetch public tests for Codeforces tasks
 * Improve formatter (% passed, show diff, get inspired by other cool formatters)
+* Support before/after in the Run API
+* Different Runs for different OSs (e.g. some support RAM usage, others doesn't)

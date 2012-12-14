@@ -31,3 +31,12 @@ also appear failed.
 ![](http://i.imgur.com/kvhnt.png)
 ![](http://i.imgur.com/9lFil.png)
 ![](http://i.imgur.com/mWLDj.png)
+
+## Planned
+
+* Linux support
+* More exact wall timing
+* DSL to declare tests
+* Easy input/output pair creation
+* Automatically fetch public tests for Codeforces tasks
+* Improve formatter (% passed, show diff, get inspired by other cool formatters)
